@@ -29,8 +29,7 @@ var Word = function(gameWord){
 
         //for each letter of gameWord, call Letter.whatToDisplay ---assigns either character or placeholder for each letter
         //concatenate into one string to display
-        
-
+    
         for (var i = 0; i < letterArray.length; i++) {
             var newCharacter = new Letter.whatToDisplay(letterArray[i]);
             wordDisplay = wordDisplay.push(newCharacter);
@@ -38,14 +37,19 @@ var Word = function(gameWord){
         return wordDisplay;
     };
 
-    this.gamePlay = function(guess){
+    this.charCheck = function(guess){
 
-        var results = new Letter.guessCheck(guess);
-        return results;
+        var goodguess = new Letter.guessCheck(guess);
+        //results: T=guess is in game word=good guess
+        if(goodguess) {
+            return true;
+        }
+
     };
 
 
 };
 
-var newWord = Word('bird');
-conole.log(newWord.gamePlay)
+//for troubleshooting 
+//var newWord = Word('bird');
+//console.log(newWord.gamePlay)

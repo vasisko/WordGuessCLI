@@ -8,40 +8,40 @@
 
 //  * A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly.....guessCheck
 
-var Letter = function(guess,value,boolean){
+var Letter = function(value,boolean){
     // underlying character 
     this.character = value;  
    
     // boolean for guessed state: T=guessed, F=not
-    this.guessedLetter = boolean;
-
-    // user guess
-    this.userGuess = guess;
+    this.showChar = boolean;
 
     // stats is just for troubleshooting...
     this.stats = function(){
-        console.log(this.character + this.userGuess + this.guessedLetter);
+        console.log(this.character + this.userGuess + this.showChar);
     };
     
     //function to assign Character or Placeholder
     this.whatToDisplay = function(){
-         if(this.guessedLetter) {
+         if(this.showChar) {
             return this.userGuess;
          }
         return "_ ";
     };
 
     // function to check the user's guess: takes a character as an argument and checks it against the underlying character
-    this.guessCheck = function(){
-        if (this.userGuess===this.character){
-            return this.guessedLetter = true;
+    this.guessCheck = function(guess){
+        if (guess===this.character){
+            return this.showChar = true;
         }
-        return this.guessedLetter=false;
+        return this.showChar=false;
     };
 
 };
 
-//var newLetter = new Letter('p', 'w', false);
+var newLetter = new Letter('p', false);
+newLetter.guessCheck('p');
+console.log(newLetter.showChar);
+
 //console.log(newLetter.whatToDisplay());
 //console.log(newLetter.guessCheck());
    // console.log(Letter.whatToDisplay());
