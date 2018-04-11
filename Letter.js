@@ -18,6 +18,7 @@ var Letter = function(guess,value,boolean){
     // user guess
     this.userGuess = guess;
 
+    // stats is just for troubleshooting...
     this.stats = function(){
         console.log(this.character + this.userGuess + this.guessedLetter);
     };
