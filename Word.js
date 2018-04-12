@@ -7,32 +7,29 @@
 //  * A function that takes a character as an argument and calls the guess function on each letter object (the second function defined in `Letter.js`)
 //----------------------------------------------
 var Letter = require('./Letter.js');
-//Constructor creates object representing current word being guessed
 
 var letterArray=[];//array containing each letter of game word
 var wordDisplay = "";//string of concatenated array values to be displayed at CLI
 
+//Constructor creates object representing current word being guessed-------------------------------
 var Word = function(gameWord){
 
     //word to be played (index.js sends this)
-    this.gameWord = gameWord;
+    this.wordPlayed = gameWord;
 
     // Create array of letters-- these are underlying letters of word being guessed
-    this.gameLetters = function(){
-            //each letter becomes an array element
-            for (var i = 0; i < this.gameWord.length; i++) {
-                letterArray[i] = this.gameWord.charAt(i);
-    };
-
+    this.gameLetters = this.wordPlayed.split('');
+            
     // Concatenate array of letters into string for user display
-    this.toString = function(letterArray){
+    this.toString = function(){
 
         //for each letter of gameWord, call Letter.whatToDisplay ---assigns either character or placeholder for each letter
         //concatenate into one string to display
     
-        for (var i = 0; i < letterArray.length; i++) {
-            var newCharacter = new Letter.whatToDisplay(letterArray[i]);
-            wordDisplay = wordDisplay.push(newCharacter);
+        for (var i = 0; i < this.gameLetters.length; i++) {
+            var newLetter = new Letter(this.gameLetters[i]);
+            wordDisplay.push(newLetter);
+            console.log('New Letter' + newLetter);
         }
         return wordDisplay;
     };
@@ -51,5 +48,8 @@ var Word = function(gameWord){
 };
 
 //for troubleshooting 
-//var newWord = Word('bird');
-//console.log(newWord.gamePlay)
+var newWord = new Word('bird');
+
+console.log(newWord.gameLetters);
+console.log(newWord.gameLetters.length);
+console.log(newWord.toString());
