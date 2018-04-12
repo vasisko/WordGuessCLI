@@ -21,17 +21,18 @@ var Word = function(gameWord){
     this.gameLetters = this.wordPlayed.split('');
             
     // Concatenate array of letters into string for user display
-    this.toString = function(){
+    this.charString = function(){
 
         //for each letter of gameWord, call Letter.whatToDisplay ---assigns either character or placeholder for each letter
         //concatenate into one string to display
     
         for (var i = 0; i < this.gameLetters.length; i++) {
             var newLetter = new Letter(this.gameLetters[i]);
-            wordDisplay.push(newLetter);
-            console.log('New Letter' + newLetter);
+            letterArray.push(newLetter.whatToDisplay());
+           // console.log('New Letter' + newLetter.character);
         }
-        return wordDisplay;
+        
+        return  letterArray.join(" ");
     };
 
     this.charCheck = function(guess){
@@ -52,4 +53,4 @@ var newWord = new Word('bird');
 
 console.log(newWord.gameLetters);
 console.log(newWord.gameLetters.length);
-console.log(newWord.toString());
+console.log(newWord.charString());
