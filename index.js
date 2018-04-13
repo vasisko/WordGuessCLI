@@ -76,12 +76,14 @@ function promptUser(){
        
     //check to see if more letters/turns left
 
-        newWord.charString(); //ERROR*****pushing next word to array
-        
-        console.log(newWord.charString());
-        console.log("you got this far");//************************** 
+        newWord.charString(); //ERROR*****pushing new word to array
+        // need to look at string of letters to see if there are any blanks left
+
+        console.log(newWord.charString());//show gameWord with guessed characters showing
+
+        console.log("code got this far");//************************** 
         //if blanks remain and user has turns left, prompt to guess again
-        if (newWord.indexOf("_")>0 && turns>0) {
+        if (newWord.indexOf("_")>0 && turns>0) {  
         promptUser();
         }
         // if turns = 0, -- lose -- send message "You Lost: Game Over"
