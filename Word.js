@@ -34,23 +34,33 @@ var Word = function(gameWord){
         
         return  letterArray.join(" ");
     };
-
+    // Check to see if guess is letter in word
     this.charCheck = function(guess){
-
-        var goodguess = new Letter.guessCheck(guess);
-        //results: T=guess is in game word=good guess
-        if(goodguess) {
-            return true;
+        var goodguess = 0;
+        for (var i = 0; i < this.gameLetters.length; i++) {
+            var newLetter = new Letter(this.gameLetters[i]);
+            var match = newLetter.guessCheck(guess);
+            if (match) { goodguess ++;};
         }
-
+        //results: T=guess is in game word=good guess
+        if(goodguess>0) {
+            return true;
+            }
+        else {
+            return false;
+        }
     };
 
 
 };
 
-//for troubleshooting 
-var newWord = new Word('bird');
+// Export the Letter constructor for use in Word.js
+module.exports = Word;
 
-console.log(newWord.gameLetters);
-console.log(newWord.gameLetters.length);
-console.log(newWord.charString());
+//for troubleshooting 
+//var newWord = new Word('bird');
+//console.log(newWord.gameLetters);
+//console.log(newWord.charString());
+//console.log(newWord.charCheck("s"));
+//console.log(newWord.charCheck("b"));
+

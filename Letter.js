@@ -18,9 +18,10 @@ var Letter = function(value){
     // function to check the user's guess: takes a character as an argument and checks it against the underlying character
     this.guessCheck = function(guess){
         if (guess===this.character){
+            console.log(guess===this.character);
             return this.showChar = true;
         }
-        return this.showChar=false;
+        return this.showChar = false;
     };
 
 };
