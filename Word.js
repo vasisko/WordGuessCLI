@@ -28,7 +28,7 @@ var Word = function(gameWord){
     
         for (var i = 0; i < this.gameLetters.length; i++) {
             var newLetter = new Letter(this.gameLetters[i]);
-            letterArray.push(newLetter.whatToDisplay());
+            letterArray[i] = (newLetter.whatToDisplay());
            // console.log('New Letter' + newLetter.character);
         }
         
@@ -41,13 +41,27 @@ var Word = function(gameWord){
             var newLetter = new Letter(this.gameLetters[i]);
             var match = newLetter.guessCheck(guess);
             if (match) { goodguess ++;};
+
+            letterArray[i] = newLetter.whatToDisplay();
         }
+         
+        //show gameWord with guessed characters showing
+        console.log(letterArray.join(" "));
         //results: T=guess is in game word=good guess
         if(goodguess>0) {
-            return true;
+            //*************add this in somehow--- if "_" play again */
+            if(letterArray.indexOf("_")>0){
+                console.log("blanks still left");
+                return "guessedChar";
             }
+            else {
+                console.log("no blanks left");
+                return "guessedAll";
+            }
+        }    
         else {
-            return false;
+            console.log("bad guess");
+            return "guessedWrong";
         }
     };
 
@@ -63,4 +77,5 @@ module.exports = Word;
 //console.log(newWord.charString());
 //console.log(newWord.charCheck("s"));
 //console.log(newWord.charCheck("b"));
+
 

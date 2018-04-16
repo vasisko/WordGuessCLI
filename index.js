@@ -61,43 +61,56 @@ function promptUser(){
      //check to see if guess is a character in gameWord
         
       
-        // if it returns true, send "Correct!" message to user
-        if (newWord.charCheck(userGuess)) {
-            console.log("Correct!");        
+        // if it returns guessedChar send "Correct!" message to user
+        if (newWord.charCheck(userGuess)==="guessedChar") {
+            console.log("Correct!"); 
+            promptUser();       
          }
-       
-        //if it returns false, turns -1, send "Not Correct" message
+         // if it returns guessedAll send "Congrats!" message to user, game over, start again
+        else if (newWord.charCheck(userGuess)==="guessedAll"){
+            console.log("You guessed the word! Congrats! You Won!");
+            start();
+        }
+        //if it returns guessedWrong, turns -1, send "Wrong" message
         else { 
             console.log("Wrong");
             turns --;
-            console.log("You have " + turns + " turns left.");
+            //if user has turns left, continue guessing 
+            if (turns>0) {
+                console.log("You have " + turns + " turns left.");
+                promptUser();
+            }
+            //if user is out of turns, game over, start again
+            else {
+                console.log("Sorry.  You are out of guesses.  You lost.");
+                start();
+            }
         }
 
        
     //check to see if more letters/turns left
 
-        newWord.charString(); //ERROR*****pushing new word to array
+        
         // need to look at string of letters to see if there are any blanks left
-
-        console.log(newWord.charString());//show gameWord with guessed characters showing
+        //*****do this in Word.js
 
         console.log("code got this far");//************************** 
         //if blanks remain and user has turns left, prompt to guess again
-        if (newWord.indexOf("_")>0 && turns>0) {  
-        promptUser();
-        }
+        //if (newWord.includes("_")===true && turns>0) {  
+        //promptUser();
+        //}
         // if turns = 0, -- lose -- send message "You Lost: Game Over"
         //restart game with new word
-        else if (turns === 0){
-        console.log("Sorry.  You are out of guesses.  You lost.");
-        start();
-        }
+        //else if (turns === 0){
+        //console.log("Sorry.  You are out of guesses.  You lost.");
+        //start();
+        //}
         // if no blanks left -- win -- send message "You Won"
         // restart game with new word
-        else {  
-        console.log("You guessed the word! Congrats! You Won!");
-        start();
-        }
+        //else {  
+        //console.log("You guessed the word! Congrats! You Won!");
+        //start();
+        //}
     });
 };
 
